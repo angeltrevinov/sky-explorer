@@ -24,14 +24,16 @@ export default {
     location: function () {
       if (this.location) {
         this.linkApi = "https://virtualsky.lco.global/embed/index.html?" +
-            "longitude=" +
-            "&latitude=" + "34.4326" +
+            "longitude=" + this.location.coords.longitude +
+            "&latitude=" + this.location.coords.latitude +
             "&projection=" + "stereo" +
             "&constellations=" + "true" +
             "&constellationlabels=" + "true" +
             "&meteorshowers=" + "true" +
             "&showstarlabels=" + "true" +
             "&showdate=false" +
+            "&showposition=false" +
+            "&live=true" +
             "&az=162.03638296776467";
       }
       console.log(this.location);
