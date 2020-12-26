@@ -38,7 +38,7 @@ export default {
             "&showdate=false" +
             "&showposition=false" +
             "&live=true" +
-            "&az=162.03638296776467";
+            "&az=180";
       }
       console.log(this.location);
     }
