@@ -14,7 +14,11 @@ export default {
   name: 'VirtualSky',
   data() {
     return {
-      linkApi: ''
+      linkApi: '',
+      constellations: true,
+      constellationlabels: true,
+      meteorshowers: true,
+      showstarlabels: true
     }
 },
   props: {
@@ -27,10 +31,10 @@ export default {
             "longitude=" + this.location.coords.longitude +
             "&latitude=" + this.location.coords.latitude +
             "&projection=" + "stereo" +
-            "&constellations=" + "true" +
-            "&constellationlabels=" + "true" +
-            "&meteorshowers=" + "true" +
-            "&showstarlabels=" + "true" +
+            "&constellations=" + this.constellations +
+            "&constellationlabels=" + this.constellationlabels +
+            "&meteorshowers=" + this.meteorshowers +
+            "&showstarlabels=" + this.showstarlabels +
             "&showdate=false" +
             "&showposition=false" +
             "&live=true" +
