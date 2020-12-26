@@ -1,12 +1,44 @@
 <template>
-  <iframe
-      frameborder="0"
-      scrolling="no"
-      marginheight="0"
-      marginwidth="0"
-      v-bind:src="linkApi"
-      allowTransparency="true">
-  </iframe>
+  <div class="container-fluid" style="width: 100%; height: 100%;">
+    <div class="row">
+      <div class="col form-check">
+        <input class="form-check-input" type="checkbox" value="" id="constellations" v-model="constellations" @change="updateSkyViewer">
+        <label class="form-check-label" for="constellations">
+          Constellations
+        </label>
+      </div>
+      <div class="col form-check">
+        <input class="form-check-input" type="checkbox" value="" id="constellationlabels" v-model="constellationlabels" @change="updateSkyViewer">
+        <label class="form-check-label" for="constellationlabels">
+          constellation labels
+        </label>
+      </div>
+      <div class="col form-check">
+        <input class="form-check-input" type="checkbox" value="" id="meteorshowers" v-model="meteorshowers" @change="updateSkyViewer">
+        <label class="form-check-label" for="meteorshowers">
+          meteor showers
+        </label>
+      </div>
+      <div class="col form-check">
+        <input class="form-check-input" type="checkbox" value="" id="showstarlabels" v-model="showstarlabels" @change="updateSkyViewer">
+        <label class="form-check-label" for="showstarlabels">
+          show star labels
+        </label>
+      </div>
+    </div>
+    <div class="row" style="width: 100%; height: 100%;">
+      <div class="col">
+        <iframe
+            frameborder="0"
+            scrolling="no"
+            marginheight="0"
+            marginwidth="0"
+            v-bind:src="linkApi"
+            allowTransparency="true">
+        </iframe>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -24,8 +56,8 @@ export default {
   props: {
     location: null
   },
-  watch: {
-    location: function () {
+  methods: {
+    updateSkyViewer() {
       if (this.location) {
         this.linkApi = "https://virtualsky.lco.global/embed/index.html?" +
             "longitude=" + this.location.coords.longitude +
@@ -40,7 +72,11 @@ export default {
             "&live=true" +
             "&az=180";
       }
-      console.log(this.location);
+    }
+  },
+  watch: {
+    location: function () {
+      this.updateSkyViewer();
     }
   }
 }
