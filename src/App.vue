@@ -24,10 +24,10 @@
       <div class="form-group">
         <div class="row input-group">
           <div class="col-10">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" v-model="selectedLocation" @change="useLocation = false">
           </div>
           <div class="col-2">
-            <button type="button" class="btn btn-outline-light">Show Sky!</button>
+            <button type="button" class="btn btn-outline-light" v-bind:disabled="useLocation" @click="searchForPlace">Show Sky!</button>
           </div>
         </div>
         <div class="row mt-3">
@@ -49,12 +49,15 @@
 
 <script>
 import VirtualSky from './components/VirtualSky.vue'
+import axios from 'axios';
 
 export default {
   name: 'App',
   data() {
     return {
-      location: null
+      location: null,
+      useLocation: false,
+      selectedLocation: ''
     }
   },
   components: {
@@ -69,13 +72,34 @@ export default {
       } else {
         navigator.geolocation.getCurrentPosition(
             pos => {
+              this.useLocation = true;
               this.location = pos;
+              this.selectedLocation = this.location.coords.longitude + ', ' + this.location.coords.latitude
             }
         );
       }
 
+    },
+    // -----------------------------------------------------
+    searchForPlace() {
+      console.log(process.env.VUE_APP_PLACES_KEY)
+      const URL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + this.selectedLocation +
+          "&inputtype=textquery&fields=formatted_address,geometry&key=" + process.env.VUE_APP_PLACES_KEY ;
+      axios.get(URL).
+      then((result) => {
+        console.log(result);
+        this.selectedLocation = result.data.candidates[0].formatted_address;
+        this.location = {
+          coords: {
+            longitude: result.data.candidates[0].geometry.location.lng,
+            latitude: result.data.candidates[0].geometry.location.lat
+          }
+        }
+      }).catch((error) => {
+        console.log(error)
+      });
     }
-  }
+  },
 }
 </script>
 
