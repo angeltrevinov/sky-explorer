@@ -1,5 +1,6 @@
 <template>
   <div class="container-fluid" style="width: 100%; height: 100%;">
+
     <div class="row">
       <div class="col form-check">
         <input class="form-check-input" type="checkbox" value="" id="constellations" v-model="constellations" @change="updateSkyViewer">
@@ -25,8 +26,21 @@
           show star labels
         </label>
       </div>
+      <div class="col form-check">
+        <input class="form-check-input" type="checkbox" value="" id="showplanets" v-model="showplanets" @change="updateSkyViewer">
+        <label class="form-check-label" for="showplanets">
+          show planets
+        </label>
+      </div>
+      <div class="col form-check">
+        <input class="form-check-input" type="checkbox" value="" id="showplanetlabels" v-model="showplanetlabels" @change="updateSkyViewer">
+        <label class="form-check-label" for="showplanetlabels">
+          show planets labels
+        </label>
+      </div>
     </div>
-    <div class="row" style="width: 100%; height: 100%;">
+
+    <div class="row mt-2" style="width: 100%; height: 100%;">
       <div class="col">
         <iframe
             frameborder="0"
@@ -38,6 +52,7 @@
         </iframe>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -50,7 +65,9 @@ export default {
       constellations: true,
       constellationlabels: true,
       meteorshowers: true,
-      showstarlabels: true
+      showstarlabels: true,
+      showplanets: true,
+      showplanetlabels: true
     }
 },
   props: {
@@ -62,15 +79,16 @@ export default {
         this.linkApi = "https://virtualsky.lco.global/embed/index.html?" +
             "longitude=" + this.location.coords.longitude +
             "&latitude=" + this.location.coords.latitude +
-            "&projection=" + "stereo" +
+            "&projection=stereo" +
             "&constellations=" + this.constellations +
             "&constellationlabels=" + this.constellationlabels +
             "&meteorshowers=" + this.meteorshowers +
             "&showstarlabels=" + this.showstarlabels +
+            "&showplanets=" + this.showplanets +
+            "&showplanetlabels=" + this.showplanetlabels +
             "&showdate=false" +
             "&showposition=false" +
-            "&live=true" +
-            "&az=180";
+            "&live=true";
       }
     }
   },

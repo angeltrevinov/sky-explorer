@@ -11,9 +11,12 @@
       </div>
 
       <div class="row">
-        <div class="col">
-          <p class="text-center">
-            To find out how the constellations appear above your or for a specific location, let the app use your location or set a location by submitting a location in the corresponding text field
+        <div class="col text-center">
+          <p>
+            To find out how the constellations appear above your or for a specific location, let the app use your location or set a location by submitting a location in the corresponding text field.
+          </p>
+          <p>
+            This was done using the <a href="https://virtualsky.lco.global/#:~:text=VirtualSky%20a%20browser%2Dbased%20planetarium,educational%20and%20non%2Dprofit%20use.">Virtual Sky</a> by Las Cumbres Observatory.
           </p>
         </div>
       </div>
