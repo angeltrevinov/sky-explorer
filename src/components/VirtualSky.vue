@@ -87,7 +87,7 @@ export default {
             "&showplanets=" + this.showplanets +
             "&showplanetlabels=" + this.showplanetlabels +
             "&showdate=false" +
-            "&showposition=false" +
+            "&showposition=true" +
             "&live=true";
       }
     }
