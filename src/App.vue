@@ -83,8 +83,9 @@ export default {
     // -----------------------------------------------------
     searchForPlace() {
       if (!this.useLocation) {
-        const URL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + this.selectedLocation +
+        const URL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + this.selectedLocation +
             "&inputtype=textquery&fields=formatted_address,geometry&key=" + process.env.VUE_APP_PLACES_KEY ;
+        //URL = "https://cors-anywhere.herokuapp.com/" + URL;
         axios.get(URL).
         then((result) => {
           this.selectedLocation = result.data.candidates[0].formatted_address;
